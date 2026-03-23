@@ -8,4 +8,9 @@ export default defineNuxtConfig({
     configPath: 'tailwind.config.js',
     exposeConfig: false,
   },
-})
+  runtimeConfig: {
+    databaseUrl: process.env.DATABASE_URL,
+    jwtSecret: process.env.JWT_SECRET,
+    public: {},
+  },
+});
