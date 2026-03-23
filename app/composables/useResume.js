@@ -34,16 +34,16 @@ const defaultResume = {
     },
   ],
   skills: ['Vue.js / Nuxt', 'TypeScript', 'Node.js', 'Tailwind CSS', 'PostgreSQL', 'Docker', 'AWS'],
-}
+};
 
 export function useResume() {
   const resume = useState('resume', () => ({
     ...defaultResume,
     personal: { ...defaultResume.personal },
-  }))
+  }));
 
   function updatePersonal(data) {
-    resume.value.personal = { ...resume.value.personal, ...data }
+    resume.value.personal = { ...resume.value.personal, ...data };
   }
 
   function addExperience() {
@@ -53,11 +53,11 @@ export function useResume() {
       startDate: '',
       endDate: '',
       description: '',
-    })
+    });
   }
 
   function removeExperience(index) {
-    resume.value.experience.splice(index, 1)
+    resume.value.experience.splice(index, 1);
   }
 
   function addEducation() {
@@ -67,21 +67,21 @@ export function useResume() {
       field: '',
       startDate: '',
       endDate: '',
-    })
+    });
   }
 
   function removeEducation(index) {
-    resume.value.education.splice(index, 1)
+    resume.value.education.splice(index, 1);
   }
 
   function addSkill(skill) {
     if (skill.trim() && !resume.value.skills.includes(skill.trim())) {
-      resume.value.skills.push(skill.trim())
+      resume.value.skills.push(skill.trim());
     }
   }
 
   function removeSkill(index) {
-    resume.value.skills.splice(index, 1)
+    resume.value.skills.splice(index, 1);
   }
 
   return {
@@ -93,5 +93,5 @@ export function useResume() {
     removeEducation,
     addSkill,
     removeSkill,
-  }
+  };
 }
