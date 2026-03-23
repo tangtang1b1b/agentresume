@@ -11,15 +11,14 @@
 
 | 層級 | 技術 |
 |------|------|
-| 框架 | Nuxt 3（Composition API + `<script setup>`） |
+| 框架 | Nuxt 4（Composition API + `<script setup>`） |
 | 樣式 | Tailwind CSS v3 |
-| 語言 | TypeScript（嚴格模式） |
 | 狀態管理 | `useState`（Nuxt 內建）/ Pinia（複雜狀態） |
 | 套件管理 | npm |
 
 ---
 
-### 1.2 Nuxt 3 資料夾結構規範
+### 1.2 Nuxt 4 資料夾結構規範
 
 ```
 agentresume/
@@ -38,21 +37,20 @@ agentresume/
 │   │       ├── SkillsSection.vue
 │   │       └── ResumePreview.vue
 │   ├── composables/              # use 前綴，封裝業務邏輯與狀態
-│   │   └── useResume.ts
+│   │   └── useResume.js
 │   ├── layouts/
 │   │   └── default.vue           # 預設 layout，包裹全站共用結構
 │   └── pages/
 │       └── index.vue             # 路由頁面，以資料夾結構對應 URL
 ├── public/                       # 靜態資源（favicon、robots.txt 等）
-├── nuxt.config.ts                # Nuxt 設定檔
+├── nuxt.config.js                # Nuxt 設定檔
 ├── tailwind.config.js            # Tailwind 設定，content 路徑須涵蓋所有 Vue 檔案
-├── tsconfig.json
 └── package.json
 ```
 
 **命名規則：**
 - 元件（Components）：`PascalCase`，例如 `ResumePreview.vue`
-- Composables：`camelCase` 加 `use` 前綴，例如 `useResume.ts`
+- Composables：`camelCase` 加 `use` 前綴，例如 `useResume.js`
 - 頁面（Pages）：`kebab-case`，例如 `resume-detail.vue`
 - CSS class：只使用 Tailwind utility class，禁止撰寫自訂 CSS（除 `@layer` 擴充外）
 
@@ -85,14 +83,14 @@ agentresume/
 
 ---
 
-### 1.4 Vue / TypeScript 規範
+### 1.4 Vue / JavaScript 規範
 
-- 所有元件使用 `<script setup lang="ts">` 語法。
-- Props 使用 `defineProps<{ ... }>()` 泛型語法，不用 `withDefaults` 除非有必要預設值。
-- Emits 使用 `defineEmits<{ ... }>()` 事件物件語法。
-- Composable 狀態使用 `useState<T>()` 確保 SSR 安全。
-- 所有 TypeScript interface 集中定義在 composable 或 `types/` 目錄中。
-- 禁止使用 `any`，使用 `unknown` 搭配型別守衛。
+- 所有元件使用 `<script setup>` 語法（不加 `lang="ts"`）。
+- Props 使用 `defineProps(['propName'])` 簡易陣列語法，或 `defineProps({ prop: Type })` 執行期驗證語法。
+- Emits 使用 `defineEmits(['eventName', ...])` 陣列語法。
+- Composable 狀態使用 `useState()` 確保 SSR 安全。
+- 業務邏輯集中定義在 composable（`composables/`）中，避免在元件內撰寫複雜邏輯。
+- 禁止在元件中使用 `var`，統一使用 `const` / `let`。
 
 ---
 
@@ -124,7 +122,7 @@ Plan → Code → Test → Fix
 
 每個功能實作完成後，**必須**撰寫或描述以下測試：
 
-```typescript
+```javascript
 // 單元測試（composable）
 describe('useResume', () => {
   it('should add a skill and deduplicate', () => { ... })
@@ -166,7 +164,7 @@ describe('SkillsSection', () => {
 
 **使用 Claude Sonnet 4.6（複雜邏輯）當：**
 - 需要跨多個檔案的架構變更
-- 涉及 TypeScript 複雜型別推導
+- 涉及複雜狀態邏輯或演算法設計
 - 需要處理非同步資料流（API 整合、SSR 資料抓取）
 - 效能瓶頸分析與解決
 - 安全性相關功能（輸入驗證、XSS 防護）
@@ -176,7 +174,7 @@ describe('SkillsSection', () => {
 - 更改 Tailwind class（顏色、間距、字型）
 - 新增/修改表單欄位
 - 調整現有元件的 props
-- 修正簡單的型別錯誤
+- 修正簡單的邏輯錯誤
 - 快速新增 utility function（< 20 行）
 
 **使用 GPT-4o-mini（文檔生成）當：**

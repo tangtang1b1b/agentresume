@@ -61,7 +61,7 @@
   </NuxtLayout>
 </template>
 
-<script setup lang="ts">
+<script setup>
 useHead({
   title: '履歷生成器 | AgentResume',
   meta: [{ name: 'description', content: '使用 Nuxt3 + Tailwind CSS 打造的免費履歷生成器' }],

@@ -11,7 +11,7 @@
           type="text"
           placeholder="王小明"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-          @input="emit('update', { name: ($event.target as HTMLInputElement).value })"
+          @input="emit('update', { name: $event.target.value })"
         />
       </div>
       <div>
@@ -21,7 +21,7 @@
           type="text"
           placeholder="全端工程師"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-          @input="emit('update', { title: ($event.target as HTMLInputElement).value })"
+          @input="emit('update', { title: $event.target.value })"
         />
       </div>
       <div>
@@ -31,7 +31,7 @@
           type="email"
           placeholder="example@email.com"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-          @input="emit('update', { email: ($event.target as HTMLInputElement).value })"
+          @input="emit('update', { email: $event.target.value })"
         />
       </div>
       <div>
@@ -41,7 +41,7 @@
           type="tel"
           placeholder="+886 912 345 678"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-          @input="emit('update', { phone: ($event.target as HTMLInputElement).value })"
+          @input="emit('update', { phone: $event.target.value })"
         />
       </div>
       <div>
@@ -51,7 +51,7 @@
           type="text"
           placeholder="台灣，台北市"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-          @input="emit('update', { location: ($event.target as HTMLInputElement).value })"
+          @input="emit('update', { location: $event.target.value })"
         />
       </div>
       <div>
@@ -61,7 +61,7 @@
           type="url"
           placeholder="https://github.com/yourname"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-          @input="emit('update', { website: ($event.target as HTMLInputElement).value })"
+          @input="emit('update', { website: $event.target.value })"
         />
       </div>
       <div class="md:col-span-2">
@@ -71,21 +71,14 @@
           rows="3"
           placeholder="簡短描述您的專業背景與能力..."
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-          @input="emit('update', { summary: ($event.target as HTMLTextAreaElement).value })"
+          @input="emit('update', { summary: $event.target.value })"
         />
       </div>
     </div>
   </section>
 </template>
 
-<script setup lang="ts">
-import type { ResumeData } from '~/composables/useResume'
-
-defineProps<{
-  data: ResumeData['personal']
-}>()
-
-const emit = defineEmits<{
-  update: [payload: Partial<ResumeData['personal']>]
-}>()
+<script setup>
+defineProps(['data'])
+const emit = defineEmits(['update'])
 </script>

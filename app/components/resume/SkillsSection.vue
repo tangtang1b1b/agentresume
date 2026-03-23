@@ -37,15 +37,10 @@
   </section>
 </template>
 
-<script setup lang="ts">
-defineProps<{
-  data: string[]
-}>()
+<script setup>
+defineProps(['data'])
 
-const emit = defineEmits<{
-  add: [skill: string]
-  remove: [index: number]
-}>()
+const emit = defineEmits(['add', 'remove'])
 
 const newSkill = ref('')
 

@@ -33,7 +33,7 @@
               :value="exp.company"
               type="text"
               class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-              @input="emit('updateItem', index, { company: ($event.target as HTMLInputElement).value })"
+              @input="emit('updateItem', index, { company: $event.target.value })"
             />
           </div>
           <div>
@@ -42,7 +42,7 @@
               :value="exp.position"
               type="text"
               class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-              @input="emit('updateItem', index, { position: ($event.target as HTMLInputElement).value })"
+              @input="emit('updateItem', index, { position: $event.target.value })"
             />
           </div>
           <div>
@@ -52,7 +52,7 @@
               type="text"
               placeholder="2020-01"
               class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-              @input="emit('updateItem', index, { startDate: ($event.target as HTMLInputElement).value })"
+              @input="emit('updateItem', index, { startDate: $event.target.value })"
             />
           </div>
           <div>
@@ -62,7 +62,7 @@
               type="text"
               placeholder="2022-12 或「至今」"
               class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-              @input="emit('updateItem', index, { endDate: ($event.target as HTMLInputElement).value })"
+              @input="emit('updateItem', index, { endDate: $event.target.value })"
             />
           </div>
           <div class="md:col-span-2">
@@ -71,7 +71,7 @@
               :value="exp.description"
               rows="3"
               class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-              @input="emit('updateItem', index, { description: ($event.target as HTMLTextAreaElement).value })"
+              @input="emit('updateItem', index, { description: $event.target.value })"
             />
           </div>
         </div>
@@ -80,16 +80,8 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import type { ResumeData } from '~/composables/useResume'
+<script setup>
+defineProps(['data'])
 
-defineProps<{
-  data: ResumeData['experience']
-}>()
-
-const emit = defineEmits<{
-  add: []
-  remove: [index: number]
-  updateItem: [index: number, payload: Partial<ResumeData['experience'][0]>]
-}>()
+const emit = defineEmits(['add', 'remove', 'updateItem'])
 </script>

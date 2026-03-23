@@ -81,10 +81,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import type { ResumeData } from '~/composables/useResume'
-
-defineProps<{
-  resume: ResumeData
-}>()
+<script setup>
+defineProps(['resume'])
 </script>

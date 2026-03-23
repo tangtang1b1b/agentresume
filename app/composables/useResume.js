@@ -1,31 +1,4 @@
-export interface ResumeData {
-  personal: {
-    name: string
-    title: string
-    email: string
-    phone: string
-    location: string
-    website?: string
-    summary: string
-  }
-  experience: Array<{
-    company: string
-    position: string
-    startDate: string
-    endDate: string
-    description: string
-  }>
-  education: Array<{
-    school: string
-    degree: string
-    field: string
-    startDate: string
-    endDate: string
-  }>
-  skills: string[]
-}
-
-const defaultResume: ResumeData = {
+const defaultResume = {
   personal: {
     name: '王小明',
     title: '全端工程師',
@@ -64,12 +37,12 @@ const defaultResume: ResumeData = {
 }
 
 export function useResume() {
-  const resume = useState<ResumeData>('resume', () => ({
+  const resume = useState('resume', () => ({
     ...defaultResume,
     personal: { ...defaultResume.personal },
   }))
 
-  function updatePersonal(data: Partial<ResumeData['personal']>) {
+  function updatePersonal(data) {
     resume.value.personal = { ...resume.value.personal, ...data }
   }
 
@@ -83,7 +56,7 @@ export function useResume() {
     })
   }
 
-  function removeExperience(index: number) {
+  function removeExperience(index) {
     resume.value.experience.splice(index, 1)
   }
 
@@ -97,17 +70,17 @@ export function useResume() {
     })
   }
 
-  function removeEducation(index: number) {
+  function removeEducation(index) {
     resume.value.education.splice(index, 1)
   }
 
-  function addSkill(skill: string) {
+  function addSkill(skill) {
     if (skill.trim() && !resume.value.skills.includes(skill.trim())) {
       resume.value.skills.push(skill.trim())
     }
   }
 
-  function removeSkill(index: number) {
+  function removeSkill(index) {
     resume.value.skills.splice(index, 1)
   }
 

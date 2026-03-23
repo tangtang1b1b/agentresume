@@ -30,7 +30,7 @@
               :value="edu.school"
               type="text"
               class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-              @input="emit('updateItem', index, { school: ($event.target as HTMLInputElement).value })"
+              @input="emit('updateItem', index, { school: $event.target.value })"
             />
           </div>
           <div>
@@ -40,7 +40,7 @@
               type="text"
               placeholder="學士 / 碩士 / 博士"
               class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-              @input="emit('updateItem', index, { degree: ($event.target as HTMLInputElement).value })"
+              @input="emit('updateItem', index, { degree: $event.target.value })"
             />
           </div>
           <div class="md:col-span-2">
@@ -49,7 +49,7 @@
               :value="edu.field"
               type="text"
               class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-              @input="emit('updateItem', index, { field: ($event.target as HTMLInputElement).value })"
+              @input="emit('updateItem', index, { field: $event.target.value })"
             />
           </div>
           <div>
@@ -59,7 +59,7 @@
               type="text"
               placeholder="2015-09"
               class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-              @input="emit('updateItem', index, { startDate: ($event.target as HTMLInputElement).value })"
+              @input="emit('updateItem', index, { startDate: $event.target.value })"
             />
           </div>
           <div>
@@ -69,7 +69,7 @@
               type="text"
               placeholder="2019-06"
               class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-              @input="emit('updateItem', index, { endDate: ($event.target as HTMLInputElement).value })"
+              @input="emit('updateItem', index, { endDate: $event.target.value })"
             />
           </div>
         </div>
@@ -78,16 +78,7 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import type { ResumeData } from '~/composables/useResume'
-
-defineProps<{
-  data: ResumeData['education']
-}>()
-
-const emit = defineEmits<{
-  add: []
-  remove: [index: number]
-  updateItem: [index: number, payload: Partial<ResumeData['education'][0]>]
-}>()
+<script setup>
+defineProps(['data'])
+const emit = defineEmits(['add', 'remove', 'updateItem'])
 </script>
