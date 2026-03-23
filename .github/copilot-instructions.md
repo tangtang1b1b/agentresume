@@ -48,6 +48,16 @@ agentresume/
 └── package.json
 ```
 
+**Server 規範：**
+
+- 所有 API 邏輯必須放在 `server/api/` 或 `server/routes/`。
+- Server handler 必須使用 `defineEventHandler`（例如：
+```js
+export default defineEventHandler(async (event) => {
+  // 處理請求
+})
+```
+
 **命名規則：**
 - 元件（Components）：`PascalCase`，例如 `ResumePreview.vue`
 - Composables：`camelCase` 加 `use` 前綴，例如 `useResume.js`
@@ -149,6 +159,11 @@ describe('SkillsSection', () => {
 4. 若同一 Bug 修復超過 2 次，須重新進行 Plan 階段
 
 ---
+
+## 2.5 執行限制 (Runtime Constraints)
+- **單次修改上限**：若單一指令（如：修改規範）不涉及代碼邏輯變更，請直接修改檔案，**嚴禁執行全專案掃描**。
+- **自主停止機制**：若 Agent 迭代超過 3 次仍無法達成目標，必須立即停止並向使用者回報問題點，嚴禁無意義的重複嘗試。
+- **文件優先**：當使用者要求修改 Instructions 時，僅需關注該 Markdown 檔案本身，除非明確要求，否則不需同步修改代碼。
 
 ## 3. 模型使用策略
 
