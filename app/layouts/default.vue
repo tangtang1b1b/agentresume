@@ -1,12 +1,12 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <nav class="border-b border-gray-200 bg-white shadow-sm print:hidden">
+  <div class="min-h-screen bg-slate-50">
+    <nav class="border-b border-slate-200 bg-white shadow-sm print:hidden transition-smooth">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-        <NuxtLink to="/" class="text-lg font-bold text-primary-600">AgentResume</NuxtLink>
+        <NuxtLink to="/" class="text-lg font-bold text-emerald-600 transition-smooth hover:text-emerald-700">AgentResume</NuxtLink>
         <div v-if="user" class="flex items-center gap-3">
-          <span class="text-sm text-gray-500">{{ user.email }}</span>
+          <span class="text-sm text-slate-500">{{ user.email }}</span>
           <button
-            class="rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 transition-smooth hover:bg-slate-50 active:scale-95 focus:outline-none focus:ring-1 focus:ring-slate-300"
             @click="logout"
           >
             登出
@@ -15,7 +15,7 @@
         <NuxtLink
           v-else
           to="/login"
-          class="rounded-lg bg-primary-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-primary-700"
+          class="rounded-lg bg-slate-700 px-4 py-1.5 text-sm font-medium text-white transition-smooth hover:bg-slate-800 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-300"
         >
           登入 / 註冊
         </NuxtLink>

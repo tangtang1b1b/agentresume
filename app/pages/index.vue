@@ -2,22 +2,22 @@
   <NuxtLayout>
     <div class="mx-auto max-w-7xl px-4 py-8">
       <!-- Header -->
-      <header class="mb-8 flex gap-3 sm:gap-2 flex-col sm:flex-row sm:items-center justify-between">
+      <header class="mb-8 flex gap-3 sm:gap-2 flex-col sm:flex-row sm:items-center justify-between animate-fadeInUp">
         <div>
-          <h1 class="text-3xl font-bold text-gray-900">履歷生成器</h1>
-          <p class="mt-1 text-sm text-gray-500">填寫資料，即時預覽您的專業履歷</p>
+          <h1 class="text-3xl font-bold text-slate-900">履歷生成器</h1>
+          <p class="mt-1 text-sm text-slate-500">填寫資料，即時預覽您的專業履歷</p>
         </div>
         <div class="flex items-center gap-3 print:hidden">
           <button
             v-if="user"
             :disabled="saving"
-            class="rounded-lg border border-primary-500 px-4 py-2.5 text-sm font-semibold text-primary-600 hover:bg-primary-50 disabled:opacity-50"
+            class="rounded-lg border border-emerald-300 px-4 py-2.5 text-sm font-semibold text-emerald-700 transition-smooth hover:bg-emerald-50 active:scale-95 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-emerald-300"
             @click="saveResume"
           >
             {{ saving ? '儲存中...' : (saveSuccess ? '✓ 已儲存' : '儲存履歷') }}
           </button>
           <button
-            class="rounded-lg bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white shadow hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            class="rounded-lg bg-slate-700 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-smooth hover:bg-slate-800 hover:shadow-lg active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-300"
             @click="printResume"
           >
             列印 / 匯出 PDF
@@ -28,13 +28,13 @@
       <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
         <!-- Editor Panel -->
         <div class="space-y-8 print:hidden">
-          <div class="rounded-xl bg-white p-6 shadow">
+          <div class="rounded-xl bg-white p-6 shadow transition-smooth hover:shadow-lg animate-fadeInUp">
             <ResumePersonalSection
               :data="resume.personal"
               @update="updatePersonal"
             />
           </div>
-          <div class="rounded-xl bg-white p-6 shadow">
+          <div class="rounded-xl bg-white p-6 shadow transition-smooth hover:shadow-lg animate-fadeInUp" style="animation-delay: 0.1s">
             <ResumeExperienceSection
               :data="resume.experience"
               @add="addExperience"
@@ -42,7 +42,7 @@
               @update-item="(i, p) => Object.assign(resume.experience[i], p)"
             />
           </div>
-          <div class="rounded-xl bg-white p-6 shadow">
+          <div class="rounded-xl bg-white p-6 shadow transition-smooth hover:shadow-lg animate-fadeInUp" style="animation-delay: 0.2s">
             <ResumeEducationSection
               :data="resume.education"
               @add="addEducation"
@@ -50,7 +50,7 @@
               @update-item="(i, p) => Object.assign(resume.education[i], p)"
             />
           </div>
-          <div class="rounded-xl bg-white p-6 shadow">
+          <div class="rounded-xl bg-white p-6 shadow transition-smooth hover:shadow-lg animate-fadeInUp" style="animation-delay: 0.3s">
             <ResumeSkillsSection
               :data="resume.skills"
               @add="addSkill"
@@ -60,8 +60,8 @@
         </div>
 
         <!-- Preview Panel -->
-        <div class="lg:sticky lg:top-8 lg:self-start">
-          <p class="mb-3 text-xs font-medium uppercase tracking-widest text-gray-400 print:hidden">
+        <div class="lg:sticky lg:top-8 lg:self-start animate-fadeInUp" style="animation-delay: 0.2s">
+          <p class="mb-3 text-xs font-medium uppercase tracking-widest text-slate-400 print:hidden">
             即時預覽
           </p>
           <ResumePreview :resume="resume" />
