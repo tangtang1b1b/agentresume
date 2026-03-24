@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
-import { getDb, initDb } from '~/server/utils/db';
-import { signToken } from '~/server/utils/auth';
+import { getDb, initDb } from '../../../server/utils/db.js';
+import { signToken } from '../../../server/utils/auth.js';
 
 export default defineEventHandler(async (event) => {
   const { email, password } = await readBody(event);

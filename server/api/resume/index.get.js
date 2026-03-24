@@ -1,5 +1,5 @@
-import { requireAuth } from '~/server/utils/auth';
-import { getDb } from '~/server/utils/db';
+import { requireAuth } from '../../../server/utils/auth.js';
+import { getDb } from '../../../server/utils/db.js';
 
 export default defineEventHandler(async (event) => {
   const user = requireAuth(event);
