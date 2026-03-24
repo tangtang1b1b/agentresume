@@ -2,7 +2,7 @@
   <NuxtLayout>
     <div class="mx-auto max-w-7xl px-4 py-8">
       <!-- Header -->
-      <header class="mb-8 flex items-center justify-between">
+      <header class="mb-8 flex gap-3 sm:gap-2 flex-col sm:flex-row sm:items-center justify-between">
         <div>
           <h1 class="text-3xl font-bold text-gray-900">履歷生成器</h1>
           <p class="mt-1 text-sm text-gray-500">填寫資料，即時預覽您的專業履歷</p>
